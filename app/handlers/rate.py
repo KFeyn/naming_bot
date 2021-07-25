@@ -9,6 +9,13 @@ from .. import userchoice
 from .. import dbworker
 
 
+def check_none_name(name):
+    new_name = ''
+    if name is not None:
+        new_name = name
+    return new_name
+
+
 class OrderQuestion(StatesGroup):
     """
     Класс состояний конечных автоматов
@@ -60,7 +67,8 @@ async def winner_become(message: types.Message, state: FSMContext):
     :param state: состоояние
     """
 
-    user = userchoice.UserChoice(message.from_user.id, message.from_user.first_name + ' ' + message.from_user.last_name)
+    user = userchoice.UserChoice(message.from_user.id, check_none_name(message.from_user.first_name) + ' ' +
+                                 check_none_name(message.from_user.last_name))
     await state.update_data(chat_user=user)
 
     user.choose_unrated()
