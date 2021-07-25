@@ -21,8 +21,6 @@ async def starting_message(message: types.Message, state: FSMContext):
                          "%D0%A0%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3_%D0%AD%D0%BB%D0%BE'>рейтингу Эло.</a> "
                          "Для перечня команд набери /help", parse_mode=types.ParseMode.HTML)
 
-# TODO: add admin command for adding new users and updating db tables
-
 
 async def helping_message(message: types.Message):
     """

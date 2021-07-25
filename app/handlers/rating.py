@@ -18,6 +18,7 @@ async def see_rating(message: types.Message):
     sns.barplot(x='rating', y='fio', data=top5,  palette="Blues_d")
     file_name = f'test_{message.from_user.id}.png'
     plt.savefig(file_name)
+
     await message.answer_photo(photo=open(file_name, 'rb'))
     os.remove(file_name)
 
