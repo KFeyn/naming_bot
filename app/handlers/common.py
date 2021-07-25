@@ -3,6 +3,7 @@ import logging
 from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
 import aiogram.utils.markdown as fmt
+from aiogram.types.message import ContentType
 
 from .. import userchoice
 
@@ -47,6 +48,16 @@ async def helping_message(message: types.Message):
                                   "/rating - показать список лидеров", sep='\n'))
 
 
+async def wrong_command_message(message: types.Message):
+    """
+    Сообщение реагирует на неправильные команды
+
+    :param message: сообщение
+    """
+    await message.answer("Вы ввели неверную команду. Для того, чтобы узнать, "
+                         "какие команды можно использовать, наберите /help")
+
+
 def register_handlers_common(dp: Dispatcher):
     """
     Регистрация основных сообщений в диспетчере
@@ -55,3 +66,4 @@ def register_handlers_common(dp: Dispatcher):
     """
     dp.register_message_handler(starting_message, commands="start", state="*")
     dp.register_message_handler(helping_message, commands="help")
+    dp.register_message_handler(wrong_command_message, content_types=ContentType.ANY)
