@@ -1,0 +1,10 @@
+steps:
+  - name: Execute script
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
+      USER: ${{ secrets.USER }}
+      PORT: ${{ secrets.PORT }}
+      DB: ${{ secrets.DB }}
+      SCHEMA: ${{ secrets.SCHEMA }}
+      TOKEN: ${{ secrets.TOKEN }}
+    run: python bot.py

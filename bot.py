@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 
 from aiogram.types import BotCommand
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -9,7 +10,6 @@ from app.handlers.rate import register_handlers_choosing
 from app.handlers.common import register_handlers_common
 from app.handlers.rating import register_handlers_rating
 from app.handlers.addnames import register_handlers_add_names
-from app.configreader import load_config
 
 logger = logging.getLogger(__name__)
 
@@ -40,10 +40,7 @@ async def main():
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
     )
 
-    # Парсинг файла конфигурации
-    config = load_config("config/bot.ini")
-
-    bot = Bot(token=config.tg_bot.token)
+    bot = Bot(token=os.environ['TOKEN'])
     dp = Dispatcher(bot, storage=MemoryStorage())
 
     # Регистрация хэндлеров

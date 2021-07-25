@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 import pandas as pd
-from configreader import load_config
+import os
 
 
 class DbPostgres:
@@ -40,7 +40,5 @@ class DbPostgres:
         return table
 
 
-config = load_config("config/bot.ini")
-
-dbase = DbPostgres(login=config.d_b.login, password=config.d_b.login, port=config.d_b.port,
-                   db=config.d_b.db, schema=config.d_b.schema)
+dbase = DbPostgres(login=os.environ['USER'], password=os.environ['PASSWORD'], port=os.environ['PORT'],
+                   db=os.environ['DB'], schema=os.environ['SCHEMA'])
