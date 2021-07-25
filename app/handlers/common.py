@@ -7,6 +7,13 @@ import aiogram.utils.markdown as fmt
 from .. import userchoice
 
 
+def check_none_name(name):
+    new_name = ''
+    if name is not None:
+        new_name = name
+    return new_name
+
+
 async def starting_message(message: types.Message, state: FSMContext):
     """
     Первая команда, она проверяет существование пользователя и заполняет его данные
@@ -16,10 +23,13 @@ async def starting_message(message: types.Message, state: FSMContext):
     """
     await state.finish()
 
-    user = userchoice.UserChoice(message.from_user.id, message.from_user.first_name + ' ' + message.from_user.last_name)
+    first_name = check_none_name(message.from_user.first_name)
+    last_name = check_none_name(message.from_user.last_name)
+
+    user = userchoice.UserChoice(message.from_user.id, first_name + ' ' + last_name)
     user.check_name()
 
-    logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} залогинился')
+    logging.info(f'Пользователь {first_name} {last_name} залогинился')
 
     await message.answer("Привет! Этот бот сравнивает позволяет сравнить фамилии по "
                          "<a href='https://ru.wikipedia.org/wiki/"
