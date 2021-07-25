@@ -26,7 +26,7 @@ class DbPostgres:
         :return: вывод таблицы
         """
         engine = create_engine(
-            f'postgresql://{self.__login}:{self.__password}@{self.__db}:{self.__port}/{self.__schema}')
+            f'postgresql://{self.__login}:{self.__password}@{self.__db}:{self.__port}/{self.__schema}?sslmode=require')
         connection = engine.connect()
         query = query.replace('\n', ' ').replace('\t', ' ').replace("'", "\'")
         resoverall = connection.execute(query)
