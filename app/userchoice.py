@@ -1,6 +1,6 @@
 import random
 
-import dbworker
+import app.dbworker as dbworker
 
 
 class UserChoice:
