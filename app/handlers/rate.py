@@ -1,6 +1,9 @@
 from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
+
+import logging
+
 from .. import elo
 from .. import userchoice
 from .. import dbworker
@@ -90,6 +93,8 @@ async def winner_choose(message: types.Message, state: FSMContext):
     :param message: сообщение
     :param state: состояние
     """
+    logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} сделал выбор')
+
     user_data = await state.get_data()
     user = user_data['chat_user']
 

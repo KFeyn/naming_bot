@@ -1,7 +1,10 @@
+import logging
+
 from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
-from .. import userchoice
 import aiogram.utils.markdown as fmt
+
+from .. import userchoice
 
 
 async def starting_message(message: types.Message, state: FSMContext):
@@ -15,6 +18,8 @@ async def starting_message(message: types.Message, state: FSMContext):
 
     user = userchoice.UserChoice(message.from_user.id, message.from_user.first_name + ' ' + message.from_user.last_name)
     user.check_name()
+
+    logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} залогинился')
 
     await message.answer("Привет! Этот бот сравнивает позволяет сравнить фамилии по "
                          "<a href='https://ru.wikipedia.org/wiki/"
