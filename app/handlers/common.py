@@ -36,7 +36,7 @@ async def helping_message(message: types.Message):
 
 def register_handlers_common(dp: Dispatcher):
     """
-    Регистрация сообщений в диспетчере
+    Регистрация основных сообщений в диспетчере
 
     :param dp: диспетчер
     """

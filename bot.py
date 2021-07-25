@@ -7,6 +7,7 @@ from aiogram import Bot, Dispatcher
 
 from app.handlers.rate import register_handlers_choosing
 from app.handlers.common import register_handlers_common
+from app.handlers.rating import register_handlers_rating
 from app.configreader import load_config
 
 logger = logging.getLogger(__name__)
@@ -20,7 +21,8 @@ async def set_commands(bot: Bot):
     """
     commands = [
         BotCommand(command="/rate", description="Выбрать из пары"),
-        BotCommand(command="/help", description="Помощь")
+        BotCommand(command="/help", description="Помощь"),
+        BotCommand(command="/rating", description="Общий рейтинг")
     ]
     await bot.set_my_commands(commands)
 
@@ -47,6 +49,7 @@ async def main():
     # Регистрация хэндлеров
     register_handlers_choosing(dp)
     register_handlers_common(dp)
+    register_handlers_rating(dp)
 
     # Установка команд бота
     await set_commands(bot)
