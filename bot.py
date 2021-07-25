@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher
 from app.handlers.rate import register_handlers_choosing
 from app.handlers.common import register_handlers_common
 from app.handlers.rating import register_handlers_rating
-from app.handlers.add_names import register_handlers_add_names
+from app.handlers.addnames import register_handlers_add_names
 from app.configreader import load_config
 
 logger = logging.getLogger(__name__)
