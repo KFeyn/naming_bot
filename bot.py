@@ -45,9 +45,9 @@ async def main():
 
     # Регистрация хэндлеров
     register_handlers_choosing(dp)
-    register_handlers_common(dp)
     register_handlers_rating(dp)
     register_handlers_add_names(dp)
+    register_handlers_common(dp)
 
     # Установка команд бота
     await set_commands(bot)
@@ -59,3 +59,4 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
+Ис
