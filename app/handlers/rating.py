@@ -17,8 +17,8 @@ async def see_rating(message: types.Message):
 
     :param message: сообщение
     """
-    top5 = dbworker.dbase.execute_query('select fio, rating from names.default_names order by rating desc limit 5'
-                                        , with_result=True)
+    top5 = dbworker.dbase.execute_query('select fio, rating from names.default_names order by rating desc limit 5',
+                                        with_result=True)
     sns.barplot(x='rating', y='fio', data=top5,  palette="Blues_d")
     file_name = f'test_{message.from_user.id}.png'
     plt.savefig(file_name)
