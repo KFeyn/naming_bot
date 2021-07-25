@@ -32,6 +32,7 @@ class DbPostgres:
             cur.execute(query)
             table = pd.DataFrame()
             cur.close()
+            connection.commit()
             connection.close()
 
         return table
