@@ -40,7 +40,7 @@ async def main():
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
     )
 
-    bot = Bot(token=os.environ['TOKEN'])
+    bot = Bot(token=os.environ.get('TOKEN'))
     dp = Dispatcher(bot, storage=MemoryStorage())
 
     # Регистрация хэндлеров
@@ -59,3 +59,4 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
+

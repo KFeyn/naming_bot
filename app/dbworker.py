@@ -40,5 +40,5 @@ class DbPostgres:
         return table
 
 
-dbase = DbPostgres(login=os.environ['USER'], password=os.environ['PASSWORD'], port=os.environ['PORT'],
-                   db=os.environ['DB'], schema=os.environ['SCHEMA'])
+dbase = DbPostgres(login=os.environ.get('LOGIN'), password=os.environ.get('PASSWORD'), port=os.environ.get('PORT'),
+                   db=os.environ.get('DB'), schema=os.environ.get('SCHEMA'))
