@@ -33,10 +33,11 @@ class DbPostgres:
         if with_result:
             table = pd.DataFrame(resoverall.fetchall(), columns=resoverall.keys())
             connection.close()
-            return table
         else:
+            table = pd.DataFrame()
             connection.close()
-            return pd.DataFrame()
+
+        return table
 
 
 config = load_config("config/bot.ini")
