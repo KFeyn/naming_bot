@@ -39,15 +39,15 @@ async def adding_new_name(message: types.Message, state: FSMContext):
         await message.answer("Пожалуйста, ввыдеите имя, используя кириллические символы.")
         return
     elif not dbworker.dbase.execute_query(query=f"select fio from names.default_names where id = "
-                                                f"md5('{new_name}')::bytea", with_result=True).empty:
+                                                f"md5('{message.text}')::bytea", with_result=True).empty:
         await message.answer("Такое имя уже есть!")
         await state.finish()
         return
 
     dbworker.dbase.execute_query(
-        query=f"insert into names.pairs select md5('{new_name}' || '-' || fio)::bytea, \
-                    '{new_name}' || '-' || fio, ARRAY[]::integer[] from names.default_names; \
-              insert into names.default_names values (md5('{new_name}')::bytea, '{new_name}', 0, 0);"
+        query=f"insert into names.pairs select md5('{message.text}' || '-' || fio)::bytea, \
+                    '{message.text}' || '-' || fio, ARRAY[]::integer[] from names.default_names; \
+              insert into names.default_names values (md5('{message.text}')::bytea, '{message.text}', 0, 0);"
     )
 
     await message.reply("Принято!")
