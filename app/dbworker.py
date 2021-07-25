@@ -28,7 +28,10 @@ class DbPostgres:
             table = pd.io.sql.read_sql_query(query, connection)
             connection.close()
         else:
+            cur = connection.cursor()
+            cur.execute(query)
             table = pd.DataFrame()
+            cur.close()
             connection.close()
 
         return table
