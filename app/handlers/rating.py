@@ -1,7 +1,6 @@
 from aiogram import Dispatcher, types
 
 import seaborn as sns
-import matplotlib.pyplot as plt
 import logging
 import os
 
@@ -19,14 +18,13 @@ async def see_rating(message: types.Message):
     """
     top5 = dbworker.dbase.execute_query('select fio, rating from names.default_names order by rating desc limit 5',
                                         with_result=True)
-    sns.barplot(x='rating', y='fio', data=top5,  palette="Blues_d")
+    ax = sns.barplot(x='rating', y='fio', data=top5,  palette="Blues_d")
     file_name = f'test_{message.from_user.id}.png'
-    plt.savefig(file_name)
+    ax.figure.savefig(file_name)
 
     logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} смотрит рейтинг')
 
-    with open(file_name, 'rb') as file:
-        await message.answer_photo(photo=file)
+    await message.answer_photo(photo=open(file_name, 'rb'))
     os.remove(file_name)
 
 

@@ -54,7 +54,7 @@ class PlayerInfo:
         :param old_rating: старый рейтинг
         :param win: кто победил
         """
-        self.new_rating = elo.elo(self.rating, old_rating, self.games, win) + self.rating
+        self.new_rating = elo.elo(self.rating, old_rating, self.games, win)
         self.new_games = self.games + 1
 
 
