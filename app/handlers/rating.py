@@ -21,6 +21,7 @@ async def see_rating(message: types.Message):
     ax = sns.barplot(x='rating', y='fio', data=top5,  palette="Blues_d")
     file_name = f'test_{message.from_user.id}.png'
     ax.figure.savefig(file_name)
+    ax.figure.clear()
 
     logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} смотрит рейтинг')
 
