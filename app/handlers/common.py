@@ -54,6 +54,9 @@ async def wrong_command_message(message: types.Message):
 
     :param message: сообщение
     """
+
+    logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} пишет {message.text}')
+
     await message.answer("Вы ввели неверную команду. Для того, чтобы узнать, "
                          "какие команды можно использовать, наберите /help")
 
