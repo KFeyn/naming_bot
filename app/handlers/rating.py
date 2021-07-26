@@ -25,7 +25,8 @@ async def see_rating(message: types.Message):
 
     logging.info(f'Пользователь {message.from_user.first_name} {message.from_user.last_name} смотрит рейтинг')
 
-    await message.answer_photo(photo=open(file_name, 'rb'))
+    with open(file_name, 'rb') as file:
+        await message.answer_photo(photo=file)
     os.remove(file_name)
 
 

@@ -90,7 +90,7 @@ async def winner_become(message: types.Message, state: FSMContext):
 
     keyboard.add(*user.players)
 
-    await message.answer("Какая фамилия смешнее?", reply_markup=keyboard)
+    await message.answer("Кто звучит смешнее?", reply_markup=keyboard)
     await OrderQuestion.waiting_for_answer.set()
 
 
