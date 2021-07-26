@@ -37,7 +37,7 @@ async def main():
     # Настройка логирования в stdout
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        format="%(asctime)s+3h - %(levelname)s - %(name)s - %(message)s",
     )
 
     bot = Bot(token=os.environ.get('TOKEN'))
